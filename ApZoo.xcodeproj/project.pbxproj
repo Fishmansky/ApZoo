@@ -13,6 +13,9 @@
 		0423C78725FE577F0001D577 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0423C78625FE577F0001D577 /* Preview Assets.xcassets */; };
 		0423C79225FE577F0001D577 /* ApZooTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423C79125FE577F0001D577 /* ApZooTests.swift */; };
 		0423C79D25FE577F0001D577 /* ApZooUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0423C79C25FE577F0001D577 /* ApZooUITests.swift */; };
+		04295629261E064600137071 /* WorkerDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04295628261E064600137071 /* WorkerDetailsView.swift */; };
+		0429562E261E068000137071 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429562D261E068000137071 /* SelectionView.swift */; };
+		04295633261E06D600137071 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04295632261E06D600137071 /* TasksView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		0423C79825FE577F0001D577 /* ApZooUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApZooUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0423C79C25FE577F0001D577 /* ApZooUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApZooUITests.swift; sourceTree = "<group>"; };
 		0423C79E25FE577F0001D577 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04295628261E064600137071 /* WorkerDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerDetailsView.swift; sourceTree = "<group>"; };
+		0429562D261E068000137071 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
+		04295632261E06D600137071 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,9 @@
 			children = (
 				0423C77F25FE577D0001D577 /* ApZooApp.swift */,
 				0423C78125FE577D0001D577 /* ContentView.swift */,
+				04295632261E06D600137071 /* TasksView.swift */,
+				0429562D261E068000137071 /* SelectionView.swift */,
+				04295628261E064600137071 /* WorkerDetailsView.swift */,
 				0423C78325FE577F0001D577 /* Assets.xcassets */,
 				0423C78825FE577F0001D577 /* Info.plist */,
 				0423C78525FE577F0001D577 /* Preview Content */,
@@ -260,7 +269,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0423C78225FE577D0001D577 /* ContentView.swift in Sources */,
+				04295629261E064600137071 /* WorkerDetailsView.swift in Sources */,
 				0423C78025FE577D0001D577 /* ApZooApp.swift in Sources */,
+				0429562E261E068000137071 /* SelectionView.swift in Sources */,
+				04295633261E06D600137071 /* TasksView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

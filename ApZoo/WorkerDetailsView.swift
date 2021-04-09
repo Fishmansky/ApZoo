@@ -12,21 +12,27 @@ struct WorkerDetailsView: View {
     var worker: Worker
     var body: some View {
         VStack(alignment: .leading) {
-            Text("\(worker.name)")
+            HStack{
+                Spacer()
+                Text("\(worker.name)")
+                    .font(.system(size: 26))
+                    .fontWeight(.bold)
+                Spacer()
+            }
             Form{
-                Section(header: Text("Tasks")){
+                Section(header: Text("Current task")){
+                    Text(worker.currentTask())
+                        .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.blue/*@END_MENU_TOKEN@*/)
+                }
+                Section(header: Text("All tasks")){
                     ForEach(0..<worker.Tasks.count, id: \.self){
                         Text(worker.Tasks[$0].description)
                     }
                 }
             }
-            Text("Currently working on: \(worker.currentTask())")
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
         }
     }
 }
-
 
 //struct WorkerDetailsView_Previews: PreviewProvider {
 //    static var previews: some View {

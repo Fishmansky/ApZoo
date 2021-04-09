@@ -10,7 +10,7 @@ import SwiftUI
 struct SelectionView: View {
     
     @EnvironmentObject var ObservedTM: TaskManager
-    @Binding var passedTask: Task
+    var passedTask: Task
     @Binding var isPresented: Bool
     var body: some View {
         VStack{
@@ -24,18 +24,18 @@ struct SelectionView: View {
                     isPresented = false
                 }, label: {
                     Text("Cancel")
-                        .font(.system(size: 20))
-                        .fontWeight(.bold)
+                        .fontWeight(.semibold)
+                        .frame(width: 85, height: 32, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .background(Color.red)
+                        .foregroundColor(.white)
                 })
-                    .foregroundColor(.white)
-                    .background(Color.red)
-                    .frame(width: 100, height: 34)
-                    .cornerRadius(10)
+                    .cornerRadius(8)
                     .padding(.all, 10)
             }
             List(ObservedTM.WorkerList) { worker in
                 Button(action: {
-                    ObservedTM.WorkerList[0].addTask(passedTask)
+                    worker.addTask(passedTask)
+                    ObservedTM.releaseTask(passedTask)
                     isPresented = false
                 }, label: {
                     Text(worker.name)

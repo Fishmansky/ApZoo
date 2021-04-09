@@ -34,7 +34,7 @@ class Worker: Identifiable, ObservableObject {
     }
     
     func currentTask() -> String{
-        if Tasks.isEmpty {
+        if Tasks.count == 0 {
             return "Nothing"
         } else {
         return Tasks.first!.description
@@ -99,9 +99,9 @@ class TaskManager: ObservableObject {
         self.addTask("Check water supply", .Low)
 
 
-        WorkerList[0].addTask(TaskList[0])
-        WorkerList[1].addTask(TaskList[1])
-        WorkerList[2].addTask(TaskList[2])
+//        WorkerList[0].addTask(TaskList[0])
+//        WorkerList[0].addTask(TaskList[1])
+//        WorkerList[0].addTask(TaskList[2])
     }
     
     func addTask(_ task: String, _ priority: PriorityStatus){
@@ -126,6 +126,11 @@ class TaskManager: ObservableObject {
             StringList.append(task.description)
         }
         return StringList
+    }
+    
+    func releaseTask(_ task: Task) {
+        let index = TaskList.firstIndex{$0 === task}
+        TaskList.remove(at: index!)
     }
 }
 

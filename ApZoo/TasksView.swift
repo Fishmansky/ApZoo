@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct TasksView: View {
-    @State var selectedTask = Task("",.Low)
     @State var isPresentingAssigninView = false
     @EnvironmentObject var ObservedTM: TaskManager
     @State var newTaskDescription = ""
@@ -33,9 +32,10 @@ struct TasksView: View {
                     }
                     Spacer()
                     Button(action: {
-                        selectedTask = task
+//                        selectedTask = task
                         isPresentingAssigninView.toggle()
-                    }, label: {
+                    }
+                    , label: {
                         Text("Assign")
                             .fontWeight(.semibold)
                             .frame(width: 105, height: 32, alignment: .center)
@@ -44,7 +44,7 @@ struct TasksView: View {
                     })
                     .cornerRadius(8)
                     .sheet(isPresented: $isPresentingAssigninView, content: {
-                        SelectionView(passedTask: $selectedTask, isPresented: $isPresentingAssigninView)
+                        SelectionView(passedTask: task, isPresented: $isPresentingAssigninView)
                     })
                 }
             }

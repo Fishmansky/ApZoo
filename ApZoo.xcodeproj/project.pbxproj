@@ -16,6 +16,7 @@
 		04295629261E064600137071 /* WorkerDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04295628261E064600137071 /* WorkerDetailsView.swift */; };
 		0429562E261E068000137071 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429562D261E068000137071 /* SelectionView.swift */; };
 		04295633261E06D600137071 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04295632261E06D600137071 /* TasksView.swift */; };
+		04C3F8DA26234FC100A2585C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3F8D926234FC100A2585C /* LoginView.swift */; };
 		04DD30DD2620ADB5001970CC /* WorkersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD30DC2620ADB5001970CC /* WorkersView.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		04295628261E064600137071 /* WorkerDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerDetailsView.swift; sourceTree = "<group>"; };
 		0429562D261E068000137071 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
 		04295632261E06D600137071 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
+		04C3F8D926234FC100A2585C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		04DD30DC2620ADB5001970CC /* WorkersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkersView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +107,7 @@
 			children = (
 				0423C77F25FE577D0001D577 /* ApZooApp.swift */,
 				0423C78125FE577D0001D577 /* ContentView.swift */,
+				04C3F8D926234FC100A2585C /* LoginView.swift */,
 				04DD30DC2620ADB5001970CC /* WorkersView.swift */,
 				04295632261E06D600137071 /* TasksView.swift */,
 				0429562D261E068000137071 /* SelectionView.swift */,
@@ -272,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0423C78225FE577D0001D577 /* ContentView.swift in Sources */,
+				04C3F8DA26234FC100A2585C /* LoginView.swift in Sources */,
 				04295629261E064600137071 /* WorkerDetailsView.swift in Sources */,
 				0423C78025FE577D0001D577 /* ApZooApp.swift in Sources */,
 				0429562E261E068000137071 /* SelectionView.swift in Sources */,

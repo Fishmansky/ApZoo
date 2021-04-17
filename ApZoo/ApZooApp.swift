@@ -8,6 +8,71 @@
 import Combine
 import SwiftUI
 
+
+
+class User: Identifiable {
+    private let login:  String
+    private var password: String
+    var id: UUID
+    
+    init(login: String, password: String){
+        self.login = login
+        self.password = password
+        id = UUID.init()
+    }
+    
+    func getLogin() -> String {
+        return self.login
+    }
+    
+    func checkPassword(pass: String)-> Bool{
+        if pass == self.password{
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+
+class Logger: ObservableObject {
+    @Published var UserDatabase: [User]
+    
+    init(){
+        UserDatabase = [User(login: "admin",password: "admin")]
+    }
+    
+    func UserIsRegistered(login: String) -> (Bool,Int) {
+        for i in 0..<UserDatabase.count {
+            if UserDatabase[i].getLogin() == login {
+                return (true, i)
+            }
+        }
+        return (false, -1)
+    }
+    
+    func CheckUserPassword(userID: Int, password: String) -> Bool{
+        if (UserDatabase[userID].checkPassword(pass: password)){
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func login(login: String, password: String) -> Bool{
+        let attempt = UserIsRegistered(login: login)
+        if attempt.0 == true {
+            if (CheckUserPassword(userID: attempt.1, password: password)){
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
+    }
+}
+
 enum PriorityStatus {
     case Low
     case Medium
@@ -33,21 +98,24 @@ class Worker: Identifiable, ObservableObject {
         Tasks.append(newTask)
     }
     
-    func currentTask() -> String{
+    func currentTaskDescription() -> String{
         if Tasks.count == 0 {
             return "Nothing"
         } else {
         return Tasks.first!.description
         }
     }
+    
+    func currentTask() -> Task? {
+        if Tasks.isEmpty {
+            return Task("Nothing", .Low)
+        } else {
+            return Tasks.first
+        }
+    }
+    
     func getUserCircle()-> some View{
         let userCircle = SwiftUI.VStack(content: {
-            Image("Logo2-pic")
-                .resizable()
-                .clipShape(Circle())
-                .shadow(radius: 10)
-                .overlay(Circle().stroke(Color.blue, lineWidth: 3))
-                .frame(width: 40, height: 40, alignment: .center)
             Text(name)
         })
         return userCircle
@@ -78,8 +146,15 @@ class Task: Identifiable, ObservableObject {
     }
     
     func getTaskBlock()-> some View{
-        let TaskBlock = SwiftUI.VStack(content: {
+        let TaskBlock = SwiftUI.HStack(content: {
             Text(description)
+            Spacer()
+            Text(self.getPriority())
+                .fontWeight(.semibold)
+                .frame(height: 26, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .background(colors[self.Priority])
+                .foregroundColor(.white)
+                .cornerRadius(8)
         })
         return TaskBlock
     }
@@ -137,6 +212,7 @@ class TaskManager: ObservableObject {
 @main
 struct ApZooApp: App {
     var TM = TaskManager()
+    var ApLogger = Logger()
     var body: some Scene {
         WindowGroup {
             ContentView()

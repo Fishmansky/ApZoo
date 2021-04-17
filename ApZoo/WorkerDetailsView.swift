@@ -21,12 +21,11 @@ struct WorkerDetailsView: View {
             }
             Form{
                 Section(header: Text("Current task")){
-                    Text(worker.currentTask())
-                        .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.blue/*@END_MENU_TOKEN@*/)
+                    worker.currentTask()?.getTaskBlock()
                 }
                 Section(header: Text("All tasks")){
                     ForEach(0..<worker.Tasks.count, id: \.self){
-                        Text(worker.Tasks[$0].description)
+                        worker.Tasks[$0].getTaskBlock()
                     }
                 }
             }

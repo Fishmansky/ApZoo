@@ -102,7 +102,7 @@ class Worker: Identifiable, ObservableObject {
         if Tasks.count == 0 {
             return "Nothing"
         } else {
-        return Tasks.first!.description
+            return Tasks.first!.description
         }
     }
     
@@ -114,11 +114,37 @@ class Worker: Identifiable, ObservableObject {
         }
     }
     
-    func getUserCircle()-> some View{
-        let userCircle = SwiftUI.VStack(content: {
-            Text(name)
-        })
-        return userCircle
+    func ViewBlock()-> some View{
+        var body: some View {
+            HStack{
+                Text(self.name)
+                    .fontWeight(.semibold)
+                    .font(.system(size: 21))
+                    .foregroundColor(.black)
+                    .padding()
+                Spacer()
+                VStack{
+                    Text("Current task:")
+                        .foregroundColor(.white)
+                    Text("\(self.currentTaskDescription())")
+                        .foregroundColor(Color.init(#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)))
+                }
+                Spacer()
+            }
+            
+            .frame(
+                  minWidth: 0,
+                  maxWidth: .infinity,
+                  minHeight: 0,
+                  maxHeight: .infinity,
+                  alignment: .topLeading
+                )
+            .background(Color.init(#colorLiteral(red: 0.6401271014, green: 0.7647058964, blue: 0.4001990129, alpha: 1)))
+            .clipShape(Capsule())
+            
+            
+        }
+        return body
     }
 }
 
@@ -148,10 +174,11 @@ class Task: Identifiable, ObservableObject {
     func getTaskBlock()-> some View{
         let TaskBlock = SwiftUI.HStack(content: {
             Text(description)
+                .fontWeight(.semibold)
             Spacer()
             Text(self.getPriority())
                 .fontWeight(.semibold)
-                .frame(height: 26, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .frame(height: 26, alignment: .center)
                 .background(colors[self.Priority])
                 .foregroundColor(.white)
                 .cornerRadius(8)

@@ -13,7 +13,7 @@ struct ContentView: View {
     var body: some View {
         VStack(alignment: .center){
             TabView{
-                WorkersView()
+                WorkersViewDev()
                     .tabItem {
                         Label("Workers", systemImage: "list.dash")
                     }

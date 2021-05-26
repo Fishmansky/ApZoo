@@ -8,8 +8,6 @@
 import Combine
 import SwiftUI
 
-
-
 class User: Identifiable {
     private let login:  String
     private var password: String
@@ -120,14 +118,14 @@ class Worker: Identifiable, ObservableObject {
                 Text(self.name)
                     .fontWeight(.semibold)
                     .font(.system(size: 21))
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.init(#colorLiteral(red: 0.3490196078, green: 0.1607843137, blue: 0.2549019608, alpha: 1)))
                     .padding()
                 Spacer()
                 VStack{
                     Text("Current task:")
                         .foregroundColor(.white)
                     Text("\(self.currentTaskDescription())")
-                        .foregroundColor(Color.init(#colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)))
+                        .foregroundColor(Color.init(#colorLiteral(red: 0.3490196078, green: 0.1607843137, blue: 0.2549019608, alpha: 1)))
                 }
                 Spacer()
             }
@@ -139,10 +137,17 @@ class Worker: Identifiable, ObservableObject {
                   maxHeight: .infinity,
                   alignment: .topLeading
                 )
-            .background(Color.init(#colorLiteral(red: 0.6401271014, green: 0.7647058964, blue: 0.4001990129, alpha: 1)))
+            .background(Color.init(#colorLiteral(red: 0.8862745098, green: 0.5843137255, blue: 0.4705882353, alpha: 1)))
             .clipShape(Capsule())
             
             
+        }
+        return body
+    }
+    
+    func InteractiveWorkerBlock()-> some View{
+        var body: some View {
+            Capsule()
         }
         return body
     }

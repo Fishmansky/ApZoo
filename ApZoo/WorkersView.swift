@@ -9,11 +9,11 @@ import SwiftUI
 
 struct WorkersViewDev: View {
     @State var newName = ""
+    @State var isClicked = false
     @State var isPresentingWorkerView = false
     @EnvironmentObject var ObservedTM: TaskManager
     var body: some View {
         ZStack{
-            Color(#colorLiteral(red: 0.6182629615, green: 1, blue: 0.8307533205, alpha: 1)).edgesIgnoringSafeArea(.all)
             VStack{
                 HStack{
                     Text("Workers")
@@ -23,17 +23,11 @@ struct WorkersViewDev: View {
                     Spacer()
                 }
                 VStack(alignment: .leading, spacing: 10) {
-                    List(ObservedTM.WorkerList) { worker in
-                            Button(action: {
-                                isPresentingWorkerView.toggle()
-                            }, label: {
-                                worker.ViewBlock()
-                            })
-                            .sheet(isPresented: $isPresentingWorkerView, content: {
-                                WorkerDetailsViewDev(isPresented: $isPresentingWorkerView, worker: worker)
-                            })
+                    ScrollView{
+                        ForEach(0..<ObservedTM.WorkerList.count){ worker in
+                            InteractiveWorkerBlock(worker: ObservedTM.WorkerList[worker], IsClicked: isClicked)
+                        }
                     }
-                    .colorMultiply(Color(#colorLiteral(red: 0.6182629615, green: 1, blue: 0.8307533205, alpha: 1)))
                 }
                 HStack{
                     TextField("New Worker", text: $newName)

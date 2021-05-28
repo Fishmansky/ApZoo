@@ -62,155 +62,87 @@ struct WorkerDetailsView: View {
 }
 
 var Tom = Worker("Tom")
-var d1 = Task("Duty1", .High)
-var d2 = Task("Duty2", .High)
-var d3 = Task("Duty3", .High)
+var duty = Task("Duty", .High)
+var tasks = [Task("Duty1", .High, 25), Task("Duty2", .High, 50), Task("Duty3", .High, 75)]
 
 struct InteractiveWorkerBlock: View {
-    @EnvironmentObject var ObservedTM: TaskManager
-    var worker: Worker
-    var tasks = 3
-    @State var IsClicked: Bool
-    var body: some View {
-        ZStack{
-            ZStack{
-                Rectangle()
-                    .frame(width: 300, height: IsClicked ? CGFloat((worker.Tasks.count+1)*70) : 70, alignment: .top)
-                    .foregroundColor(.silk)
-                    .cornerRadius(20)
-                    .animation(.default)
-                    .onTapGesture {
-                        IsClicked.toggle()
-                    }
-                HStack{
-                    Text((worker.currentTask()?.getPriority())!)
-                }
-            }
-            
-            ZStack{
-                Rectangle()
-                    .frame(width: IsClicked ? 130 : 300, height: 70, alignment: .top)
-                    .foregroundColor(.salmon)
-                    .cornerRadius(20)
-                    .offset(x: IsClicked ? -85 : 0,y: IsClicked ? CGFloat((worker.Tasks.count)*(-35)) : 0)
-                    .animation(.default)
-                    .onTapGesture {
-                        IsClicked.toggle()
-                    }
-                HStack{
-                    Spacer()
-                    Text(worker.name)
-                        .fontWeight(.semibold)
-                        .font(.system(size: 21))
-                        .foregroundColor(Color.init(#colorLiteral(red: 0.3490196078, green: 0.1607843137, blue: 0.2549019608, alpha: 1)))
-                    Spacer()
-                    VStack{
-                        Text("Current task:")
-                            .foregroundColor(.white)
-                        Text(worker.currentTaskDescription())
-                            .foregroundColor(Color.init(#colorLiteral(red: 0.3490196078, green: 0.1607843137, blue: 0.2549019608, alpha: 1)))
-                    }
-                    .offset(x: IsClicked ? 10 : 0)
-                    Spacer()
-                    
-                }
-                .offset(y: IsClicked ? CGFloat((worker.Tasks.count)*(-35)) : 0)
-                .animation(.default)
-                
-            }
-
-        }
-
-    }
-}
-
-struct InteractiveWorkerBlock2: View {
-    @EnvironmentObject var ObservedTM: TaskManager
     var worker: Worker
     @State var IsClicked: Bool
     var body: some View {
-        ZStack{
-            ZStack{
-                Rectangle()
-                    .frame(width: 300, height: IsClicked ? 140 : 70, alignment: .top)
-                    .foregroundColor(.silk)
-                    .cornerRadius(20)
-                    .offset(y: IsClicked ? 35 : 0)
-                    .animation(.default)
-                    .onTapGesture {
-                        IsClicked.toggle()
-                    }
-                HStack{
-                    VStack{
-                        Text("Priority")
-                            .foregroundColor(.mauve)
-                        Text((worker.currentTask()?.getPriority())!)
-                            .foregroundColor(.mauve)
-                    }
-                    .padding()
-                    VStack{
-                        Text("Status")
-                            .foregroundColor(.mauve)
-                        ZStack(alignment: .leading){
-                            Rectangle()
-                                .frame(width: 160, height: 15, alignment: .leading)
-                                .foregroundColor(.WhiteBlue)
-                            Rectangle()
-                                .frame(width: CGFloat(worker.currentTask()?.getStatus() ?? 0) * 1.6, height: 15, alignment: .leading)
-                                .foregroundColor(.DarkBlue)
+        VStack{
+            ZStack(alignment: .top){
+                ZStack(alignment: .bottom){
+                    Rectangle()
+                        .frame(width: 300, height: IsClicked ? 140 : 70, alignment: .top)
+                        .foregroundColor(.silk)
+                        .cornerRadius(20)
+                        .animation(.default)
+                        .onTapGesture {
+                            IsClicked.toggle()
                         }
-                        
+                    HStack{
+                        VStack{
+                            Text("Priority")
+                                .foregroundColor(.mauve)
+                            Text((worker.currentTask()?.getPriority())!)
+                                .foregroundColor(colors[worker.currentTask()!.Priority])
+                        }
+                        VStack{
+                            Text("Status")
+                                .foregroundColor(.mauve)
+                            ZStack(alignment: .leading){
+                                Rectangle()
+                                    .frame(width: 160, height: 13, alignment: .leading)
+                                    .foregroundColor(.WhiteBlue)
+                                Rectangle()
+                                    .frame(width: CGFloat(1.6*(worker.currentTask()?.getStatus())!), height: 15, alignment: .leading)
+                                    .foregroundColor(.DarkBlue)
+                                    .animation(.default)
+                            }
+                        }
+                        .padding(.leading, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                     }
-                    
-                }
-                .offset(y: IsClicked ? 70 : 0)
-                .animation(.default)
-
-            }
-            
-            ZStack{
-                Rectangle()
-                    .frame(width: IsClicked ? 130 : 300, height: 70, alignment: .top)
-                    .foregroundColor(.salmon)
-                    .cornerRadius(20)
-                    .offset(x: IsClicked ? -85 : 0,y: IsClicked ? CGFloat((worker.Tasks.count)*(-35)) : 0)
+                    .padding(.bottom, 15)
                     .animation(.default)
-                    .onTapGesture {
-                        IsClicked.toggle()
-                    }
-                HStack{
-                    Spacer()
-                    Text(worker.name)
-                        .fontWeight(.semibold)
-                        .font(.system(size: 21))
-                        .foregroundColor(.mauve)
-                    Spacer()
-                    VStack{
-                        Text("Current task")
-                            .foregroundColor(.white)
-                        Text(worker.currentTaskDescription())
-                            .foregroundColor(.mauve)
-                    }
-                    .offset(x: IsClicked ? 10 : 0)
-                    .animation(.default)
-                    Spacer()
-                    
                 }
-                .offset(y: IsClicked ? CGFloat((worker.Tasks.count)*(-35)) : 0)
-                .animation(.default)
-                
-            }
+                ZStack{
+                    Rectangle()
+                        .frame(width: 300, height: 70, alignment: .top)
+                        .foregroundColor(.salmon)
+                        .cornerRadius(20)
+                        .animation(.default)
+                        .onTapGesture {
+                            IsClicked.toggle()
+                        }
+                    HStack{
+                        HStack(alignment: .center){
+                            Text(worker.name)
+                                .fontWeight(.semibold)
+                                .font(.system(size: 21))
+                                .foregroundColor(.mauve)
+                        }
+                        .frame(width: 120, height: 70)
+                        HStack(alignment: .center){
+                            VStack{
+                                Text("Current task")
+                                    .foregroundColor(.white)
+                                Text(worker.currentTaskDescription())
+                                    .foregroundColor(.mauve)
+                            }
+                            .animation(.default)
+                        }.frame(width: 180, height: 70)
 
+                    }
+                    .animation(.default)
+                }
+            }
         }
-
     }
 }
-
 
 struct WorkerDetailsView_Previews: PreviewProvider {
-    
     static var previews: some View {
         
-        InteractiveWorkerBlock2(worker: Tom, IsClicked: false)
+        InteractiveWorkerBlock(worker: Tom, IsClicked: false)
     }
 }

@@ -21,33 +21,16 @@ struct WorkersViewDev: View {
                         .fontWeight(.heavy)
                         .padding()
                     Spacer()
+                    Button(action: {}, label: {
+                            Image(systemName: "refresh")})
                 }
                 VStack(alignment: .leading, spacing: 10) {
                     ScrollView{
                         ForEach(0..<ObservedTM.WorkerList.count){ worker in
-                            InteractiveWorkerBlock2(worker: ObservedTM.WorkerList[worker], IsClicked: isClicked)
+                            InteractiveWorkerBlock(worker: ObservedTM.WorkerList[worker], IsClicked: isClicked)
                         }
                     }
-                }
-                HStack{
-                    TextField("New Worker", text: $newName)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                    Button(action: {
-                        if(!newName.isEmpty){
-                            ObservedTM.WorkerList.append(.init(newName))
-                            newName = ""
-                        }
-                    }, label: {
-                        Text("Add Worker")
-                            .fontWeight(.semibold)
-                            .frame(width: 105, height: 32, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            .background(Color.green)
-                            .foregroundColor(.white)
-                    })
-                    .cornerRadius(8)
-                }
-                .padding()
-                
+                }                
             }
         }
         .environmentObject(ObservedTM)
@@ -57,6 +40,7 @@ struct WorkersViewDev: View {
 struct WorkersView: View {
     @State var newName = ""
     @State var isPresentingWorkerView = false
+    @State var isClicked = false
     @EnvironmentObject var ObservedTM: TaskManager
     
     var body: some View {
@@ -66,12 +50,13 @@ struct WorkersView: View {
                     NavigationLink(
                         destination: WorkerDetailsView(isPresented: $isPresentingWorkerView, worker: worker),
                         label: {
-                            VStack(alignment: .leading) {
-                                    Text(worker.name)
-                                Text("Currently working on: \(worker.currentTaskDescription())")
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
-                            }
+                            InteractiveWorkerBlock(worker: worker, IsClicked: isClicked)
+//                            VStack(alignment: .leading) {
+//                                    Text(worker.name)
+//                                Text("Currently working on: \(worker.currentTaskDescription())")
+//                                        .font(.subheadline)
+//                                        .foregroundColor(.gray)
+//                            }
                         })
                 }
                 .navigationTitle("Workers")

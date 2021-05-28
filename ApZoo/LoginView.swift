@@ -9,8 +9,6 @@ import Combine
 import SwiftUI
 
 struct LoginView: View {
-    @ObservedObject var ApLogger = Logger()
-//    @EnvironmentObject var Logger: ApLogger
     @Binding var isLogged: Bool
     @Binding var user: String
     @State var password = ""
@@ -34,18 +32,6 @@ struct LoginView: View {
                     .multilineTextAlignment(.center)
                     .frame(width: 200, height: 30, alignment: .center)
                     .font(.system(size: 15, weight: .semibold))
-                Button(action: {
-                    if ApLogger.login(login: user, password: password) {
-                        isLogged = true
-                    }
-                }, label: {
-                    Text("Log in")
-                        .fontWeight(.bold)
-                        .frame(width: 90, height: 40, alignment: .center)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                })
             }
         }
     }

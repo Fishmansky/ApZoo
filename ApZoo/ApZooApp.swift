@@ -8,69 +8,6 @@
 import Combine
 import SwiftUI
 
-class User: Identifiable {
-    private let login:  String
-    private var password: String
-    var id: UUID
-    
-    init(login: String, password: String){
-        self.login = login
-        self.password = password
-        id = UUID.init()
-    }
-    
-    func getLogin() -> String {
-        return self.login
-    }
-    
-    func checkPassword(pass: String)-> Bool{
-        if pass == self.password{
-            return true
-        } else {
-            return false
-        }
-    }
-}
-
-
-class Logger: ObservableObject {
-    @Published var UserDatabase: [User]
-    
-    init(){
-        UserDatabase = [User(login: "admin",password: "admin")]
-    }
-    
-    func UserIsRegistered(login: String) -> (Bool,Int) {
-        for i in 0..<UserDatabase.count {
-            if UserDatabase[i].getLogin() == login {
-                return (true, i)
-            }
-        }
-        return (false, -1)
-    }
-    
-    func CheckUserPassword(userID: Int, password: String) -> Bool{
-        if (UserDatabase[userID].checkPassword(pass: password)){
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func login(login: String, password: String) -> Bool{
-        let attempt = UserIsRegistered(login: login)
-        if attempt.0 == true {
-            if (CheckUserPassword(userID: attempt.1, password: password)){
-                return true
-            } else {
-                return false
-            }
-        } else {
-            return false
-        }
-    }
-}
-
 enum PriorityStatus {
     case Low
     case Medium
@@ -78,7 +15,7 @@ enum PriorityStatus {
 }
 
 let colors = [ PriorityStatus.High : Color.red,
-               PriorityStatus.Medium : Color.yellow,
+               PriorityStatus.Medium : Color(#colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1)),
                PriorityStatus.Low : Color.green]
 
 class Worker: Identifiable, ObservableObject {
@@ -139,8 +76,6 @@ class Worker: Identifiable, ObservableObject {
                 )
             .background(Color.init(#colorLiteral(red: 0.8862745098, green: 0.5843137255, blue: 0.4705882353, alpha: 1)))
             .clipShape(Capsule())
-            
-            
         }
         return body
     }
@@ -157,14 +92,14 @@ class Task: Identifiable, ObservableObject {
     
     @Published var description: String
     @Published var Priority: PriorityStatus
-    @Published var Status: Int
+    @Published var Status: Double
     @Published var Id: String
     
-    init (_ desc: String, _ priority: PriorityStatus){
+    init (_ desc: String, _ priority: PriorityStatus, _ status: Double = 0){
         description = desc
         Priority = priority
         Id = UUID().uuidString
-        Status = 0
+        Status = status
     }
     
     func getPriority() -> String {
@@ -178,7 +113,7 @@ class Task: Identifiable, ObservableObject {
         }
     }
     
-    func getStatus() -> Int {
+    func getStatus() -> Double {
         return self.Status
     }
     
@@ -210,10 +145,6 @@ class TaskManager: ObservableObject {
         self.addTask("Do the vaccuming", .High)
         self.addTask("Do the dishes", .Medium)
         self.addTask("Check water supply", .Low)
-        TaskList[0].Status = 50
-        TaskList[1].Status = 25
-        TaskList[2].Status = 75
-        WorkerList[0].addTask(TaskList[0])
 
 
 //        WorkerList[0].addTask(TaskList[0])
@@ -254,7 +185,6 @@ class TaskManager: ObservableObject {
 @main
 struct ApZooApp: App {
     var TM = TaskManager()
-    var ApLogger = Logger()
     var body: some Scene {
         WindowGroup {
             ContentView()

@@ -82,36 +82,36 @@ struct InteractiveWorkerBlock: View {
                     .onTapGesture {
                         IsClicked.toggle()
                     }
-                VStack{
-                    ForEach(0..<worker.Tasks.count) {t in
-                        Text("\(worker.Tasks[t].description)")
-                            .foregroundColor(Color.init(#colorLiteral(red: 0.3490196078, green: 0.1607843137, blue: 0.2549019608, alpha: 1)))
-                            .offset(y: IsClicked ? CGFloat((t+1)*(35)) : 0)
-                            .animation(.default)
-                    }
+                HStack{
+                    Text((worker.currentTask()?.getPriority())!)
                 }
             }
             
             ZStack{
                 Rectangle()
-                    .frame(width: 300, height: 70, alignment: .top)
+                    .frame(width: IsClicked ? 130 : 300, height: 70, alignment: .top)
                     .foregroundColor(.salmon)
                     .cornerRadius(20)
-                    .offset(y: IsClicked ? CGFloat((worker.Tasks.count)*(-35)) : 0)                    .animation(.default)
+                    .offset(x: IsClicked ? -85 : 0,y: IsClicked ? CGFloat((worker.Tasks.count)*(-35)) : 0)
+                    .animation(.default)
                     .onTapGesture {
                         IsClicked.toggle()
                     }
                 HStack{
+                    Spacer()
                     Text(worker.name)
                         .fontWeight(.semibold)
                         .font(.system(size: 21))
                         .foregroundColor(Color.init(#colorLiteral(red: 0.3490196078, green: 0.1607843137, blue: 0.2549019608, alpha: 1)))
+                    Spacer()
                     VStack{
                         Text("Current task:")
                             .foregroundColor(.white)
                         Text(worker.currentTaskDescription())
                             .foregroundColor(Color.init(#colorLiteral(red: 0.3490196078, green: 0.1607843137, blue: 0.2549019608, alpha: 1)))
                     }
+                    .offset(x: IsClicked ? 10 : 0)
+                    Spacer()
                     
                 }
                 .offset(y: IsClicked ? CGFloat((worker.Tasks.count)*(-35)) : 0)
@@ -124,24 +124,93 @@ struct InteractiveWorkerBlock: View {
     }
 }
 
+struct InteractiveWorkerBlock2: View {
+    @EnvironmentObject var ObservedTM: TaskManager
+    var worker: Worker
+    @State var IsClicked: Bool
+    var body: some View {
+        ZStack{
+            ZStack{
+                Rectangle()
+                    .frame(width: 300, height: IsClicked ? 140 : 70, alignment: .top)
+                    .foregroundColor(.silk)
+                    .cornerRadius(20)
+                    .offset(y: IsClicked ? 35 : 0)
+                    .animation(.default)
+                    .onTapGesture {
+                        IsClicked.toggle()
+                    }
+                HStack{
+                    VStack{
+                        Text("Priority")
+                            .foregroundColor(.mauve)
+                        Text((worker.currentTask()?.getPriority())!)
+                            .foregroundColor(.mauve)
+                    }
+                    .padding()
+                    VStack{
+                        Text("Status")
+                            .foregroundColor(.mauve)
+                        ZStack(alignment: .leading){
+                            Rectangle()
+                                .frame(width: 160, height: 15, alignment: .leading)
+                                .foregroundColor(.WhiteBlue)
+                            Rectangle()
+                                .frame(width: CGFloat(worker.currentTask()?.getStatus() ?? 0) * 1.6, height: 15, alignment: .leading)
+                                .foregroundColor(.DarkBlue)
+                        }
+                        
+                    }
+                    
+                }
+                .offset(y: IsClicked ? 70 : 0)
+                .animation(.default)
+
+            }
+            
+            ZStack{
+                Rectangle()
+                    .frame(width: IsClicked ? 130 : 300, height: 70, alignment: .top)
+                    .foregroundColor(.salmon)
+                    .cornerRadius(20)
+                    .offset(x: IsClicked ? -85 : 0,y: IsClicked ? CGFloat((worker.Tasks.count)*(-35)) : 0)
+                    .animation(.default)
+                    .onTapGesture {
+                        IsClicked.toggle()
+                    }
+                HStack{
+                    Spacer()
+                    Text(worker.name)
+                        .fontWeight(.semibold)
+                        .font(.system(size: 21))
+                        .foregroundColor(.mauve)
+                    Spacer()
+                    VStack{
+                        Text("Current task")
+                            .foregroundColor(.white)
+                        Text(worker.currentTaskDescription())
+                            .foregroundColor(.mauve)
+                    }
+                    .offset(x: IsClicked ? 10 : 0)
+                    .animation(.default)
+                    Spacer()
+                    
+                }
+                .offset(y: IsClicked ? CGFloat((worker.Tasks.count)*(-35)) : 0)
+                .animation(.default)
+                
+            }
+
+        }
+
+    }
+}
+
+
 struct WorkerDetailsView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        InteractiveWorkerBlock(worker: Tom, IsClicked: false)
+        InteractiveWorkerBlock2(worker: Tom, IsClicked: false)
     }
-}
-
-extension Color {
-    
-    public static let WhiteBlue: Color = Color(#colorLiteral(red: 0.5725490196, green: 0.862745098, blue: 0.8980392157, alpha: 1))
-    public static let DarkBlue: Color = Color(#colorLiteral(red: 0.09803921569, green: 0.4470588235, blue: 0.4705882353, alpha: 1))
-    public static let mauve: Color = Color(#colorLiteral(red: 0.3490196078, green: 0.1607843137, blue: 0.2549019608, alpha: 1))
-    public static let silk: Color = Color(#colorLiteral(red: 1, green: 0.8666666667, blue: 0.8235294118, alpha: 1))
-    public static let salmon: Color = Color(#colorLiteral(red: 0.8862745098, green: 0.5843137255, blue: 0.4705882353, alpha: 1))
-    
-    public static let whiteBlue: UIColor = UIColor(red: 146, green: 220, blue: 229, alpha: 100)
-    
-    
-    
 }

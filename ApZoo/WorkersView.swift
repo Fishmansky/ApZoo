@@ -25,7 +25,7 @@ struct WorkersViewDev: View {
                 VStack(alignment: .leading, spacing: 10) {
                     ScrollView{
                         ForEach(0..<ObservedTM.WorkerList.count){ worker in
-                            InteractiveWorkerBlock(worker: ObservedTM.WorkerList[worker], IsClicked: isClicked)
+                            InteractiveWorkerBlock2(worker: ObservedTM.WorkerList[worker], IsClicked: isClicked)
                         }
                     }
                 }

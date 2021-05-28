@@ -88,7 +88,7 @@ class Worker: Identifiable, ObservableObject {
     init (_ n: String){
         name = n
         id = UUID().uuidString
-    }
+    } 
     
     @Published var Tasks = [Task]()
     
@@ -157,12 +157,14 @@ class Task: Identifiable, ObservableObject {
     
     @Published var description: String
     @Published var Priority: PriorityStatus
-    @Published var id: String
+    @Published var Status: Int
+    @Published var Id: String
     
     init (_ desc: String, _ priority: PriorityStatus){
         description = desc
         Priority = priority
-        id = UUID().uuidString
+        Id = UUID().uuidString
+        Status = 0
     }
     
     func getPriority() -> String {
@@ -174,6 +176,10 @@ class Task: Identifiable, ObservableObject {
         case .Low:
             return  "Low"
         }
+    }
+    
+    func getStatus() -> Int {
+        return self.Status
     }
     
     func getTaskBlock()-> some View{
@@ -204,6 +210,10 @@ class TaskManager: ObservableObject {
         self.addTask("Do the vaccuming", .High)
         self.addTask("Do the dishes", .Medium)
         self.addTask("Check water supply", .Low)
+        TaskList[0].Status = 50
+        TaskList[1].Status = 25
+        TaskList[2].Status = 75
+        WorkerList[0].addTask(TaskList[0])
 
 
 //        WorkerList[0].addTask(TaskList[0])

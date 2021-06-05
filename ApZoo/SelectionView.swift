@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SelectionView: View {
-    
     @EnvironmentObject var ObservedTM: TaskManager
     var passedTask: Task
     @Binding var isPresented: Bool
@@ -38,7 +37,7 @@ struct SelectionView: View {
                     ObservedTM.releaseTask(passedTask)
                     isPresented = false
                 }, label: {
-                    Text(worker.name)
+                    Text(worker.Name)
                         .fontWeight(.semibold)
                 })
             }

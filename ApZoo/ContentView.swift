@@ -9,11 +9,10 @@ import Combine
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var ObservedTM = TaskManager()
     var body: some View {
         VStack(alignment: .center){
             TabView{
-                WorkersViewDev()
+                WorkersView()
                     .tabItem {
                         Label("Workers", systemImage: "list.dash")
                     }
@@ -23,7 +22,6 @@ struct ContentView: View {
                     }
             }
         }
-        .environmentObject(ObservedTM)
     }
 }
 

@@ -13,7 +13,7 @@ struct ManagerView: View {
     var body: some View {
         VStack(alignment: .center){
             TabView{
-                WorkersViewDev()
+                WorkersView()
                     .tabItem {
                         Label("Workers", systemImage: "list.dash")
                     }

@@ -13,6 +13,10 @@ struct TasksView: View {
     @State var newTaskDescription = ""
     @State var NewTaskPriority = PriorityStatus.Low
     
+    var T_List: [Task] {
+        ObservedTM.TaskList
+    }
+    
     var body: some View {
         VStack{
             HStack {
@@ -22,7 +26,7 @@ struct TasksView: View {
                     .padding(.leading, 10)
                 Spacer()
             }
-            List(ObservedTM.TaskList){ task in
+            List(T_List){ task in
                 HStack{
                     VStack(alignment: .leading) {
                         Text(task.description)
@@ -32,7 +36,6 @@ struct TasksView: View {
                     }
                     Spacer()
                     Button(action: {
-//                        selectedTask = task
                         isPresentingAssigninView.toggle()
                     }
                     , label: {

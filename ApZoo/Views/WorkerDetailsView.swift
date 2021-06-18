@@ -14,7 +14,7 @@ struct WorkerDetailsView: View {
         VStack(alignment: .leading) {
             HStack{
                 Spacer()
-                Text("\(worker.name)")
+                Text("\(worker.Name)")
                     .font(.system(size: 26))
                     .fontWeight(.bold)
                 Spacer()
@@ -34,7 +34,8 @@ struct WorkerDetailsView: View {
 }
 
 //struct WorkerDetailsView_Previews: PreviewProvider {
+//    @State var isPresented = true
 //    static var previews: some View {
-//        WorkerDetailsView()
+//        WorkerDetailsView(isPresented: $isPresented, worker: <#Worker#>)
 //    }
 //}

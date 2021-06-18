@@ -9,42 +9,31 @@ import Combine
 import SwiftUI
 
 struct LoginView: View {
-    @ObservedObject var ApLogger = Logger()
-//    @EnvironmentObject var Logger: ApLogger
     @Binding var isLogged: Bool
     @Binding var user: String
     @State var password = ""
     var body: some View {
-        VStack(alignment: .center, spacing: 24){
-            Text("ApZoo")
-                .bold()
-                .font(.system(size: 50))
-            Text("Login")
-                .fontWeight(.bold)
-            TextField("Your login", text: $user)
-                .autocapitalization(.none)
-                .multilineTextAlignment(.center)
-                .frame(width: 200, height: 30, alignment: .center)
-                .font(.system(size: 15, weight: .semibold))
-            TextField("Password", text: $password)
-                .autocapitalization(.none)
-                .multilineTextAlignment(.center)
-                .frame(width: 200, height: 30, alignment: .center)
-                .font(.system(size: 15, weight: .semibold))
-            Button(action: {
-                if ApLogger.login(login: user, password: password) {
-                    isLogged = true
-                }
-            }, label: {
-                Text("Log in")
+        ZStack{
+            Color(#colorLiteral(red: 0.5725490196, green: 0.862745098, blue: 0.8980392157, alpha: 1)).ignoresSafeArea()
+            
+            VStack(alignment: .center, spacing: 24){
+                Text("ApZoo")
+                    .bold()
+                    .font(.system(size: 50))
+                Text("Login")
                     .fontWeight(.bold)
-                    .frame(width: 90, height: 40, alignment: .center)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-            })
+                TextField("Your login", text: $user)
+                    .autocapitalization(.none)
+                    .multilineTextAlignment(.center)
+                    .frame(width: 200, height: 30, alignment: .center)
+                    .font(.system(size: 15, weight: .semibold))
+                TextField("Password", text: $password)
+                    .autocapitalization(.none)
+                    .multilineTextAlignment(.center)
+                    .frame(width: 200, height: 30, alignment: .center)
+                    .font(.system(size: 15, weight: .semibold))
+            }
         }
-
     }
 }
 

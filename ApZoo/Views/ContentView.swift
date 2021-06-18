@@ -9,23 +9,26 @@ import Combine
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var ObservedTM = TaskManager()
     var body: some View {
         VStack(alignment: .center){
             TabView{
                 WorkersView()
                     .tabItem {
-                        Label("Workers", systemImage: "list.dash")
+                        Label("Workers", systemImage: "person.3.fill")
                     }
                 TasksView()
                     .tabItem {
                         Label("Tasks", systemImage: "list.dash")
                     }
+                ChooseView()
+                    .tabItem {
+                        Label("Worker", systemImage: "person.fill")
+                    }
             }
         }
-        .environmentObject(ObservedTM)
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

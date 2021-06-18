@@ -35,8 +35,8 @@ struct WorkersView: View {
                 }
                 VStack(alignment: .leading, spacing: 10) {
                     ScrollView(showsIndicators: false){
-                        ForEach(0..<W_List.count , id: \.self){ worker in
-                            WorkerBlock(worker: W_List[worker], IsClicked: isClicked)
+                        ForEach(0..<W_List.count, id: \.self){ worker in
+                            WorkerBlock(IsClicked: isClicked, worker: W_List[worker])
                         }
                     }
                 }

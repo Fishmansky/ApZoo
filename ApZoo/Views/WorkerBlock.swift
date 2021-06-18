@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct WorkerBlock: View {
-    var worker: Worker
+    @EnvironmentObject var ObservedTM: TaskManager
     @State var IsClicked: Bool
+    
+    var worker: Worker
+    
     var body: some View {
         VStack{
             ZStack(alignment: .top){

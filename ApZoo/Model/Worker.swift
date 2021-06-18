@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class Worker: Identifiable, ObservableObject {
-    let Name: String
+    var Name: String
     @Published var id: String
     
     init (_ name: String){
@@ -39,4 +39,8 @@ class Worker: Identifiable, ObservableObject {
         }
     }
     
+    func taskIsFinished(_ task: Task) -> Void {
+        let index = Tasks.firstIndex{$0 === task}
+        Tasks.remove(at: index!)
+    }
 }

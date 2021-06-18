@@ -15,11 +15,19 @@ final class TaskManager: ObservableObject {
     
     init (){
         WorkerList.append(Worker("Adam"))
-        WorkerList.append(Worker("Adm"))
-        WorkerList.append(Worker("Ada32"))
+        WorkerList.append(Worker("Tom"))
+        WorkerList.append(Worker("Lisa"))
         self.addTask("Do the vaccuming", .High)
         self.addTask("Do the dishes", .Medium)
         self.addTask("Check water supply", .Low)
+    }
+    
+    func getWorkerTaskList(_ worker: Worker) -> [Task] {
+        if (WorkerList.contains { $0.Name == worker.Name }){
+            return worker.Tasks
+        } else {
+            return []
+        }
     }
     
     func addTask(_ task: String, _ priority: PriorityStatus){

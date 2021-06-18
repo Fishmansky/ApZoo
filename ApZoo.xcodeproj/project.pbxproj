@@ -16,9 +16,11 @@
 		04295629261E064600137071 /* WorkerDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04295628261E064600137071 /* WorkerDetailsView.swift */; };
 		0429562E261E068000137071 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429562D261E068000137071 /* SelectionView.swift */; };
 		04295633261E06D600137071 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04295632261E06D600137071 /* TasksView.swift */; };
+		045C98EE267CB031006196D5 /* WorkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C98ED267CB031006196D5 /* WorkerView.swift */; };
 		04BC9400266BAA4E00FACD1E /* Worker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BC93FF266BAA4E00FACD1E /* Worker.swift */; };
 		04BC9405266BAA7A00FACD1E /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BC9404266BAA7A00FACD1E /* Task.swift */; };
 		04BC940A266BAB2700FACD1E /* WorkerBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BC9409266BAB2700FACD1E /* WorkerBlock.swift */; };
+		04DA88122672A5C9009074A7 /* ChooseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DA88112672A5C9009074A7 /* ChooseView.swift */; };
 		04DD30DD2620ADB5001970CC /* WorkersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD30DC2620ADB5001970CC /* WorkersView.swift */; };
 		04FC9402265EF224008DDFDC /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DF47C26594B14005C4F77 /* ColorScheme.swift */; };
 /* End PBXBuildFile section */
@@ -57,9 +59,11 @@
 		0429562D261E068000137071 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
 		04295632261E06D600137071 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
 		043DF47C26594B14005C4F77 /* ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
+		045C98ED267CB031006196D5 /* WorkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerView.swift; sourceTree = "<group>"; };
 		04BC93FF266BAA4E00FACD1E /* Worker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Worker.swift; sourceTree = "<group>"; };
 		04BC9404266BAA7A00FACD1E /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		04BC9409266BAB2700FACD1E /* WorkerBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerBlock.swift; sourceTree = "<group>"; };
+		04DA88112672A5C9009074A7 /* ChooseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseView.swift; sourceTree = "<group>"; };
 		04DD30DC2620ADB5001970CC /* WorkersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkersView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +119,7 @@
 				04BC93FA266BA62700FACD1E /* Model */,
 				0423C77F25FE577D0001D577 /* ApZooApp.swift */,
 				0423C78125FE577D0001D577 /* ContentView.swift */,
+				045C98ED267CB031006196D5 /* WorkerView.swift */,
 				0429562D261E068000137071 /* SelectionView.swift */,
 				0423C78325FE577F0001D577 /* Assets.xcassets */,
 				0423C78825FE577F0001D577 /* Info.plist */,
@@ -166,6 +171,7 @@
 				04295628261E064600137071 /* WorkerDetailsView.swift */,
 				04BC9409266BAB2700FACD1E /* WorkerBlock.swift */,
 				04295632261E06D600137071 /* TasksView.swift */,
+				04DA88112672A5C9009074A7 /* ChooseView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -303,9 +309,11 @@
 				04FC9402265EF224008DDFDC /* ColorScheme.swift in Sources */,
 				04BC9405266BAA7A00FACD1E /* Task.swift in Sources */,
 				04BC940A266BAB2700FACD1E /* WorkerBlock.swift in Sources */,
+				04DA88122672A5C9009074A7 /* ChooseView.swift in Sources */,
 				04295629261E064600137071 /* WorkerDetailsView.swift in Sources */,
 				04BC9400266BAA4E00FACD1E /* Worker.swift in Sources */,
 				0423C78025FE577D0001D577 /* ApZooApp.swift in Sources */,
+				045C98EE267CB031006196D5 /* WorkerView.swift in Sources */,
 				0429562E261E068000137071 /* SelectionView.swift in Sources */,
 				04DD30DD2620ADB5001970CC /* WorkersView.swift in Sources */,
 				04295633261E06D600137071 /* TasksView.swift in Sources */,

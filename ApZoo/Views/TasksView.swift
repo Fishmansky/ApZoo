@@ -36,7 +36,6 @@ struct TasksView: View {
                     }
                     Spacer()
                     Button(action: {
-//                        selectedTask = task
                         isPresentingAssigninView.toggle()
                     }
                     , label: {

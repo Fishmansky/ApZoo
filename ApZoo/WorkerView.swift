@@ -91,12 +91,16 @@ struct TaskInteractiveBlock: View {
                     Text(task.getDescription())
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
+                        .padding(.leading, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                    Spacer()
                     Button(action: {  if (task.Status < 100){ task.Status += 10.0 }}, label: {
                             Image(systemName: "plus.circle")
                                 .foregroundColor(.yellow)
                                 .font(.system(size: 30, weight: .bold))
                     })
+                    .padding(.trailing, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                 }
+                .frame(width: 300, height: 50, alignment: .leading)
             }
         }
     }

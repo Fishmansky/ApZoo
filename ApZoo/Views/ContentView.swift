@@ -22,7 +22,7 @@ struct ContentView: View {
                     }
                 ChooseView()
                     .tabItem {
-                        Label("Tasks", systemImage: "person.fill")
+                        Label("Worker", systemImage: "person.fill")
                     }
             }
         }
